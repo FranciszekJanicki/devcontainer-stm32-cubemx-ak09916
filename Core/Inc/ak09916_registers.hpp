@@ -54,11 +54,7 @@ namespace AK09916 {
 
     struct CONTROL_2 {
         std::uint8_t : 3;
-        std::uint8_t mode4 : 1;
-        std::uint8_t mode3 : 1;
-        std::uint8_t mode2 : 1;
-        std::uint8_t mode1 : 1;
-        std::uint8_t mode0 : 1;
+        std::uint8_t mode : 5;
     } PACKED;
 
     struct CONTROL_3 {

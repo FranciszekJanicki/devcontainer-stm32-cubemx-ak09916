@@ -38,8 +38,10 @@ namespace AK09916 {
         SELF_TEST = 0b10000,
     };
 
+    constexpr std::uint8_t DEV_ADDRESS = 0b0001100;
     constexpr std::uint8_t COMPANY_ID = 0b01001000;
     constexpr std::uint8_t DEVICE_ID = 0b00001001;
+    constexpr float SCALE = 6666666.6666F;
 
 }; // namespace AK09916
 

@@ -5,6 +5,7 @@
 #include "ak09916_registers.hpp"
 #include "i2c_device.hpp"
 #include "utility.hpp"
+#include <optional>
 
 namespace AK09916 {
 
@@ -27,25 +28,29 @@ namespace AK09916 {
 
         ~AK09916() noexcept;
 
-        float get_magnetic_field_x_scaled() const noexcept;
-        float get_magnetic_field_y_scaled() const noexcept;
-        float get_magnetic_field_z_scaled() const noexcept;
-        Vec3D<float> get_magnetic_field_scaled() const noexcept;
+        std::optional<float> get_magnetic_field_x_scaled() const noexcept;
+        std::optional<float> get_magnetic_field_y_scaled() const noexcept;
+        std::optional<float> get_magnetic_field_z_scaled() const noexcept;
+        std::optional<Vec3D<float>> get_magnetic_field_scaled() const noexcept;
+
+        bool is_data_ready() const noexcept;
 
     private:
         void initialize(CONTROL_1 const control_1, CONTROL_2 const control_2, CONTROL_3 const control_3) noexcept;
         void deinitialize() noexcept;
 
+        void device_reset() const noexcept;
+
         bool is_valid_device_id() const noexcept;
-        bool is_company_device_id() const noexcept;
+        bool is_valid_company_id() const noexcept;
 
         std::uint8_t get_device_id() const noexcept;
         std::uint8_t get_company_id() const noexcept;
 
-        std::int16_t get_magnetic_field_x_raw() const noexcept;
-        std::int16_t get_magnetic_field_y_raw() const noexcept;
-        std::int16_t get_magnetic_field_z_raw() const noexcept;
-        Vec3D<std::int16_t> get_magnetic_field_raw() const noexcept;
+        std::optional<std::int16_t> get_magnetic_field_x_raw() const noexcept;
+        std::optional<std::int16_t> get_magnetic_field_y_raw() const noexcept;
+        std::optional<std::int16_t> get_magnetic_field_z_raw() const noexcept;
+        std::optional<Vec3D<std::int16_t>> get_magnetic_field_raw() const noexcept;
 
         WHO_AM_I_1 get_who_am_1_register() const noexcept;
 
